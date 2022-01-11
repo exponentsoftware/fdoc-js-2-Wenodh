@@ -84,15 +84,17 @@ console.log(addUserSkill(users, 'Brook', 'REACT'));
 console.log(addUserSkill(users, 'Vinod', 'REACT'));
 
 // Write a function which editUser if the user exist in the users array.
-function editUser(users, newUser) {
+function editUser(users, name, newUser) {
+    let count = 0;
     users.map((e) => {
-        if (e.name === newUser.name) {
-            e.name = newUser.name;
+        if (e.name === name) {
+            if (newUser.name) e.name = newUser.name;
             if (newUser.scores) e.scores = newUser.scores;
             if (newUser.skills) e.skills = newUser.skills;
             if (newUser.age) e.age = newUser.age;
+            count++;
         }
     });
-    return users;
+    return count === 1 ? users : 'user not found';
 }
-console.log(editUser(users, { name: 'Vinod', scores: 100 }));
+console.log(editUser(users, 'Vinod', { name: 'Wenodh', scores: 100 }));
